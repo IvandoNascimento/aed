@@ -27,6 +27,10 @@ public class Main {
         b.execute("REC");
         b.imprimir();
 
+        Kruskal k = new Kruskal(g);
+        k.inicializar();
+        k.imprimir();
+        k.execute();
 
     }
 }

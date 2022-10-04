@@ -18,6 +18,7 @@ public interface Grafo {
 
     int getNumeroVertices();
 
+    
 
     int getDistancia(int var1,int var2);
 }
