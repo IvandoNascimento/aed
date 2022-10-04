@@ -16,10 +16,11 @@ public interface Grafo {
 
     void imprimir();
 
+    void imprimirDistancia();
+
     int getNumeroVertices();
 
-    
-
     int getDistancia(int var1,int var2);
+
 }
 

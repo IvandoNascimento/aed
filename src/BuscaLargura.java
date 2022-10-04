@@ -78,14 +78,14 @@ public class BuscaLargura {
             System.out.print(d + " ");
         }
 
-        System.out.println("\nDistancia");
+        System.out.println("\nDistancia de arestas");
         var3 = (var6 = this.distancia).length;
 
         for(var2 = 0; var2 < var3; ++var2) {
             d = var6[var2];
             System.out.print(d + " ");
         }
-        System.out.println("\nDistancia");
+        System.out.println("\nMenor Distancia em kilometros");
         System.out.println(this.total);
         System.out.println("");
     }

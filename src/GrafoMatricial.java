@@ -61,11 +61,18 @@ public class GrafoMatricial implements Grafo {
 
         return adjacentes;
     }
-    public void imprimirDistancia(String v1, String v2){
-        //for(int i=0; i < this.numeroVertices)
+    public void imprimirDistancia(){
+        for(int i = 0; i < this.numeroVertices; ++i) {
 
-        System.out.println(v1+"-"+v2+" Distancia : "+
-                this.distancia[ this.getIndiceVertice(v1)][this.getIndiceVertice(v2)] );
+            for(int j = 0; j < this.numeroVertices; ++j) {
+                System.out.print(this.distancia[i][j] +"\t");
+
+            }
+
+            System.out.println("");
+        }
+
+        System.out.println("");
     }
 
     public void imprimir() {
@@ -73,7 +80,7 @@ public class GrafoMatricial implements Grafo {
 
             for(int j = 0; j < this.numeroVertices; ++j) {
                 System.out.print(this.matriz[i][j] +"\t");
-                System.out.print(this.matriz[i][j] +"\t");
+
             }
 
             System.out.println("");

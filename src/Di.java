@@ -1,9 +1,9 @@
-/* 
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Dijkstra {
+public class Dijkstraa {
 
 	// Atributos usados na funcao encontrarMenorCaminho
 

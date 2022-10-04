@@ -37,10 +37,7 @@ public class Kruskal {
 			System.out.println(i+":"+this.listaArestas.get(i));
 		}
 	}
-	public void execute(){
-		int a = parseInteger(listaArestas.get(0));
-		System.out.println(this.g.getDistancia(parseInteger,);
-	}
+
 		/* 
         this.listaVertices = g.getNumeroVertices();
 		this.maxArestas = (this.numeroPontos * (this.numeroPontos - 1)) / 2;
