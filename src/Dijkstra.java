@@ -4,17 +4,13 @@ public class Dijkstra {
     private Grafo g;
     private int[] distancia;
     private ArrayList<Integer> menorCaminho;
-    private ArrayList<Integer> listaVertices;
-    private ArrayList<Integer> vetoresVizinho;
-    private int[][] teste;
+
     private boolean[] marca;
     public Dijkstra(Grafo g){
         this.g = g;
         this.marca = new boolean[g.getNumeroVertices()];
         this.distancia = new int[g.getNumeroVertices()];
         this.menorCaminho = new ArrayList<>();
-        this.listaVertices =  new ArrayList<>();
-        this.teste =  new int[g.getNumeroVertices()][g.getNumeroVertices()];
 
     }
 
@@ -22,9 +18,6 @@ public class Dijkstra {
         for(int i = 0; i < this.g.getNumeroVertices(); ++i) {
             this.marca[i] = false;
             this.distancia[i] = -1;
-            this.vetoresVizinho =  new ArrayList<>();
-            this.listaVertices = new ArrayList<>();
-            this.teste[i][i] = 0;
         }
 
     }
@@ -35,51 +28,50 @@ public class Dijkstra {
         int indS = this.g.getIndiceVertice(s);
         int indD = this.g.getIndiceVertice(d);
         this.inicializar();
-        this.menorCaminho.add(indS);
+        this.menorCaminho.add(0);
         PriorityQueue<Integer> fila = new PriorityQueue();
         this.marca[indS] = true;
         this.distancia[indS] = 0;
         fila.add(indS);
 
         while(fila.size() > 0) {
-            this.vetoresVizinho = new ArrayList<>();
+            ArrayList<Integer> vetoresVizinho = new ArrayList<>();
+            ArrayList<Integer> listaVertices = new ArrayList<>();
             int v = (Integer) fila.poll();
+            if(v == indD)  {
+                break;
+            }
             List<Integer> adjacenciaV = this.g.listarAdjacencias(v);
-
-            //this.listaVertices.add(v);
             Iterator var7 = adjacenciaV.iterator();
             System.out.println("origem: " + v);
 
             while (var7.hasNext()) {
                 int u = (Integer) var7.next();
-                this.distancia[u] = u;
-                c=u;
+                this.distancia[u] = u;   
                 if (!this.marca[u]) {
-                    this.marca[u] = true;
-                    System.out.println("distancia dos aredor: "+v+","+u+":"+ this.g.getDistancia(v, u));
-                    this.vetoresVizinho.add(this.g.getDistancia(v, u));
-                    this.listaVertices.add(u);
-                    
+                    vetoresVizinho.add(this.g.getDistancia(v, u));
+                    listaVertices.add(u);   
                 }
             }
             //Collections.sort(this.vetoresVizinho);
-            int menor = this.vetoresVizinho.get(0);
-            int vertice = this.listaVertices.get(0);
-            for (int i = 1; i < this.vetoresVizinho.size(); i++) {
-                if (menor > this.vetoresVizinho.get(i)) {
-                    menor = this.vetoresVizinho.get(i);
-                    vertice = this.listaVertices.get(i);
+            int menor = vetoresVizinho.get(0);
+            int vertice = listaVertices.get(0);
+            for (int i = 1; i < vetoresVizinho.size(); i++) {
+                if (menor > vetoresVizinho.get(i)) {
+                    menor = vetoresVizinho.get(i);
+                    vertice = listaVertices.get(i);
                 }
             }
-            
-            System.out.println("VERTICE: "+this.listaVertices.get(0)+":"+this.distancia[vertice]);
-            
-            
-            if(adjacenciaV.contains(indD) && this.g.getDistancia(v, indD) <= menor){
-                System.out.println("contem entao para");
+            int proximo = this.g.getDistancia(indD, vertice);
+            if(proximo ==0){
+                proximo = this.g.getDistancia(indS, vertice);
+            }
+            int dista = proximo + menor;
+            if(adjacenciaV.contains(indD) && dista > this.g.getDistancia(v, indD)) {
                 this.menorCaminho.add(this.g.getDistancia(v, indD));
                 fila.clear();
             }else{
+                this.marca[vertice] = true;
                 fila.add(vertice);
                 System.out.println("menor:"+menor);
                 this.menorCaminho.add(menor);
@@ -103,25 +95,8 @@ public class Dijkstra {
             soma+=vertice;
             System.out.print(vertice + " ");
         }
-        System.out.println("menor distancia:"+soma);
-        System.out.print("lista dos vertices: ");
-        for (Integer vertice : this.listaVertices) {
-
-            System.out.print(vertice + " ");
-        }
-    }
-    public void imprimirDistancia(){
-        for(int i = 0; i < this.g.getNumeroVertices(); ++i) {
-
-            for(int j = 0; j < this.g.getNumeroVertices(); ++j) {
-                System.out.print(this.teste[i][j] +"\t");
-
-            }
-
-            System.out.println("");
-        }
-
         System.out.println("");
+        System.out.println("menor distancia:"+soma);
     }
 }
 
