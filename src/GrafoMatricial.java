@@ -45,9 +45,9 @@ public class GrafoMatricial implements Grafo {
 
         while(var2.hasNext()) {
             String v = (String)var2.next();
-            System.out.println(this.getIndiceVertice(v) + " - " + v);
+            System.out.print(this.getIndiceVertice(v) + "-" + v+ " || ");
         }
-
+        System.out.println("");
     }
 
     public List<Integer> listarAdjacencias(int v) {
