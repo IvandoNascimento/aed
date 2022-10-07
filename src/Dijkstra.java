@@ -48,11 +48,12 @@ public class Dijkstra {
 
             while (var7.hasNext()) {
                 int u = (Integer) var7.next();
-                this.distancia[u] = u;   
+                this.distancia[u] = u;
+
                 if (!this.marca[u]) {
                     vetoresVizinho.add(this.g.getDistancia(v, u));
-
-                    listaVertices.add(u);   
+                    System.out.println("distancia arredor" + this.g.getDistancia(v, u));
+                    listaVertices.add(u);
                 }
             }
 
@@ -61,7 +62,7 @@ public class Dijkstra {
             System.out.println("menor:"+ menor);
 
             int proximo = this.g.getDistancia(indD, vertice);
-            //System.out.println(proximo);
+            System.out.println(proximo);
             for (int i = 0; i < listaVertices.size(); i++) {
                 if(proximo==0){
                     proximo = this.g.getDistancia(indD, i);
@@ -79,7 +80,7 @@ public class Dijkstra {
                     }
                 }
             }
-            //System.out.println("proximo fora do for seg"+proximo);
+            System.out.println("proximo fora do for seg"+proximo);
             int dista = proximo + menor;
 
             if(adjacenciaV.contains(indD) && dista > this.g.getDistancia(v, indD)) {

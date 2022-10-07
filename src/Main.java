@@ -40,6 +40,14 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Scanner sc1 = new Scanner(System.in);
         opt = "N";
+        Dijkstra d = new Dijkstra(g);
+        d.inicializar();
+        //d.caminho(0);
+        d.executar("GRU", "VCP");
+        d.imprimir();
+
+        g.imprimirMapa();
+        /*
         while(opt.equals("N")) {
             Dijkstra d = new Dijkstra(g);
             System.out.println("Digite o aeroporto de partida");
@@ -55,6 +63,7 @@ public class Main {
             opt = sc1.next();
             System.out.println("");
 
-        }
     }
+         */
+        }
 }
